@@ -52,7 +52,7 @@ def post_to_discord(title, link):
         },
         method="POST"
     )
-    with urllib.request.urlopen(request, timeout=30) as response:
+        with urllib.request.urlopen(request, timeout=30) as response:
         if response.status not in (200, 204):
             raise RuntimeError("Discord rejected the message")
 
