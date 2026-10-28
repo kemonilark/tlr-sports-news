@@ -43,13 +43,15 @@ def post_to_discord(title, link):
         "allowed_mentions": {"parse": []}
     }
 
-    request = urllib.request.Request(
+      request = urllib.request.Request(
         WEBHOOK_URL,
         data=json.dumps(message).encode("utf-8"),
-        headers={"Content-Type": "application/json"},
+        headers={
+            "Content-Type": "application/json",
+            "User-Agent": "TLR-Sports-News/1.0"
+        },
         method="POST"
     )
-
     with urllib.request.urlopen(request, timeout=30) as response:
         if response.status not in (200, 204):
             raise RuntimeError("Discord rejected the message")
